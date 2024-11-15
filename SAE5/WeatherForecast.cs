@@ -1,4 +1,4 @@
-namespace SAE5
+namespace SAE501_Blazor_API
 {
     public class WeatherForecast
     {

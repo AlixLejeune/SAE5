@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace SAE5.Controllers
+namespace SAE501_Blazor_API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
