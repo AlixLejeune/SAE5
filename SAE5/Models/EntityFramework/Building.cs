@@ -42,7 +42,14 @@ namespace SAE501_Blazor_API.Models.EntityFramework
         [Required]
         [Column("bui_name")]
         [MaxLength(50)]
-        public string Name { get; set; }
+        public string Name
+        {
+            get { return Name; }
+            set
+            {
+                Name = Char.ToUpper(value[0]) + value.Substring(1).ToLower();
+            }
+        }
 
         [InverseProperty(nameof(Room.BuildingRoom))]
         public ICollection<Room> RoomsOfBuilding { get; set; } = null!;

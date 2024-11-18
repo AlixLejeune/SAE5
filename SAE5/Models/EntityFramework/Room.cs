@@ -36,12 +36,82 @@ namespace SAE501_Blazor_API.Models.EntityFramework
         }
 
         [Required]
+        [Column("roo_length")]
+        public double Length
+        {
+            get { return Length; }
+            set
+            {
+                if (value <= 0)
+                    throw new ArgumentException("Room Length error : length cannot be negative");
+                Length = value;
+            }
+        }
+
+        [Required]
+        [Column("roo_width")]
+        public double Width
+        {
+            get { return Width; }
+            set
+            {
+                if (value <= 0)
+                    throw new ArgumentException("Room Width error : width cannot be negative");
+                Width = value;
+            }
+        }
+
+        [Required]
+        [Column("roo_height")]
+        public double Height
+        {
+            get { return Height; }
+            set
+            {
+                if (value <= 0)
+                    throw new ArgumentException("Room Height error : height cannot be negative");
+                Height = value;
+            }
+        }
+
+        public double Area()
+        {
+            return Length * Width;
+        }
+
+        public double Volume() 
+        {
+            return Length * Width * Height; 
+        }
+
+
+        [Required]
         [Column("roo_buildingid")]
-        public int BuildingId { get; set; }
+        public int BuildingId
+        {
+            get { return BuildingId; }
+            set
+            {
+                if (value > 0)
+                    Id = value;
+                else
+                    throw new ArgumentException("Room foreign building Id error : Ids must be strictly positive");
+            }
+        }
 
         [Required]
         [Column("roo_roomtypeid")]
-        public int RoomTypeId { get; set; }
+        public int RoomTypeId
+        {
+            get { return RoomTypeId; }
+            set
+            {
+                if (value > 0)
+                    Id = value;
+                else
+                    throw new ArgumentException("Room foreign RoomType Id error : Ids must be strictly positive");
+            }
+        }
 
         [ForeignKey(nameof(BuildingId))]
         [InverseProperty(nameof(Building.RoomsOfBuilding))]
@@ -50,5 +120,10 @@ namespace SAE501_Blazor_API.Models.EntityFramework
         [ForeignKey(nameof(RoomTypeId))]
         [InverseProperty(nameof(RoomType.RoomsOfSuchRoomType))]
         public RoomType RoomTypeOfRoom { get; set; } = null!;
+
+        [InverseProperty(nameof(Furniture.Room))]
+        public ICollection<Furniture> FurnituresOfRoom { get; set; } = null!;
+
+        
     }
 }

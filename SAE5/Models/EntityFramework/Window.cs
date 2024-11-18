@@ -1,6 +1,6 @@
 ﻿namespace SAE501_Blazor_API.Models.EntityFramework
 {
-    public class Window : Openning
+    public class Window
     {
     }
 }
