@@ -3,11 +3,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SAE501_Blazor_API.Models.EntityFramework
 {
-    [Table("t_e_roomtype_rty")]
-    public class RoomType
+    [Table("t_e_furnituretype_frt")]
+    public class FurnitureType
     {
         [Key]
-        [Column("rty_id")]
+        [Column("frt_id")]
         public int Id
         {
             get { return Id; }
@@ -16,23 +16,25 @@ namespace SAE501_Blazor_API.Models.EntityFramework
                 if (value > 0)
                     Id = value;
                 else
-                    throw new ArgumentException("RoomType Id error : Ids must be strictly positive");
+                    throw new ArgumentException("FurnitureType Id error : Ids must be strictly positive");
             }
         }
 
         [Required]
-        [MaxLength(25)]
-        [Column("rty_name")]
+        [Column("frt_name")]
+        [MaxLength(50)]
         public string Name
         {
             get { return Name; }
             set
             {
-                Name = value.ToUpper();
+                Name = Char.ToUpper(value[0]) + value.Substring(1).ToLower();
             }
         }
 
-        [InverseProperty(nameof(Room.RoomTypeOfRoom))]
-        public ICollection<Room> RoomsOfSuchRoomType { get; set; } = null!;
+        [InverseProperty(nameof(Furniture.Type))]
+        public ICollection<Furniture> FurnituresOfSuchType { get; set; } = null!;
+
+        
     }
 }

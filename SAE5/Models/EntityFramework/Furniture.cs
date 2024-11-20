@@ -82,7 +82,7 @@ namespace SAE501_Blazor_API.Models.EntityFramework
         }
 
         [Required]
-        [Column("fur_roomid")]
+        [Column("fk_fur_roomid")]
         public int RoomId
         {
             get { return Id; }
@@ -91,13 +91,31 @@ namespace SAE501_Blazor_API.Models.EntityFramework
                 if (value > 0)
                     Id = value;
                 else
-                    throw new ArgumentException("Furniture foreign key Id error : Ids must be strictly positive");
+                    throw new ArgumentException("Furniture Room foreign key Id error : Ids must be strictly positive");
+            }
+        }
+
+        [Required]
+        [Column("fk_fur_furnituretypeid")]
+        public int FurnitureTypeId
+        {
+            get { return Id; }
+            set
+            {
+                if (value > 0)
+                    Id = value;
+                else
+                    throw new ArgumentException("Furniture FurnitureType foreign key Id error : Ids must be strictly positive");
             }
         }
 
         [ForeignKey(nameof(RoomId))]
         [InverseProperty(nameof(Room.FurnituresOfRoom))]
         public Room Room { get; set; } = null!;
+
+        [ForeignKey(nameof(FurnitureTypeId))]
+        [InverseProperty(nameof(FurnitureType.FurnituresOfSuchType))]
+        public FurnitureType Type { get; set; } = null!;
 
     }
 }

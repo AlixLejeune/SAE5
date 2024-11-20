@@ -86,7 +86,7 @@ namespace SAE501_Blazor_API.Models.EntityFramework
 
 
         [Required]
-        [Column("roo_buildingid")]
+        [Column("fk_roo_buildingid")]
         public int BuildingId
         {
             get { return BuildingId; }
@@ -100,7 +100,7 @@ namespace SAE501_Blazor_API.Models.EntityFramework
         }
 
         [Required]
-        [Column("roo_roomtypeid")]
+        [Column("fk_roo_roomtypeid")]
         public int RoomTypeId
         {
             get { return RoomTypeId; }
