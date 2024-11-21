@@ -21,15 +21,15 @@ namespace SAE501_Blazor_API.Models.EntityFramework
         }
 
         [Required]
-        [Column("doo_width")]
-        public double Width
+        [Column("doo_length")]
+        public double Length
         {
-            get { return Width; }
+            get { return Length; }
             set
             {
                 if (value <= 0)
-                    throw new ArgumentException("Door Width error : width cannot be negative");
-                Width = value;
+                    throw new ArgumentException("Door Length error : length cannot be negative");
+                Length = value;
             }
         }
 

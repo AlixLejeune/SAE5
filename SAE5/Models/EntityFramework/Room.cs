@@ -35,6 +35,7 @@ namespace SAE501_Blazor_API.Models.EntityFramework
             }
         }
 
+        /* #region room size ?
         [Required]
         [Column("roo_length")]
         public double Length
@@ -72,16 +73,30 @@ namespace SAE501_Blazor_API.Models.EntityFramework
                     throw new ArgumentException("Room Height error : height cannot be negative");
                 Height = value;
             }
-        }
+        }*/
 
         public double Area()
         {
-            return Length * Width;
+            if (WallsOfRoom == null || WallsOfRoom.Count == 0)
+                throw new ArgumentNullException("Room Area Exception : no walls in this room.");
+            else if (WallsOfRoom.Count == 4)
+            {
+                IEnumerable<Wall> walls = WallsOfRoom.OrderBy(wall => wall.Length);
+                return walls.First().Length * walls.Last().Length;
+            }
+            else if (WallsOfRoom.Count == 3)
+            {
+                List<Wall> walls = WallsOfRoom.ToList();
+                return 0.25 * Math.Sqrt(walls[0].Length + walls[1].Length + walls[2].Length);
+            }
+            else
+                throw new Exception("Room Area Exception : this room is not a triangle or a rectangle, area is not defined for those cases.");
+                
         }
 
         public double Volume() 
         {
-            return Length * Width * Height; 
+            return Area() * WallsOfRoom.First().Height;
         }
 
 
@@ -124,6 +139,9 @@ namespace SAE501_Blazor_API.Models.EntityFramework
         [InverseProperty(nameof(Furniture.Room))]
         public ICollection<Furniture> FurnituresOfRoom { get; set; } = null!;
 
+        [InverseProperty(nameof(Wall.Room))]
+        public ICollection<Wall> WallsOfRoom { get; set; } = null!;
         
+
     }
 }

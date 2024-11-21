@@ -1,4 +1,7 @@
 
+using Microsoft.EntityFrameworkCore;
+using SAE501_Blazor_API.Models.EntityFramework;
+
 namespace SAE501_Blazor_API
 {
     public class Program
@@ -13,6 +16,10 @@ namespace SAE501_Blazor_API
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            //DataContext
+            builder.Services.AddDbContext<DataContext>(options =>
+                options.UseNpgsql("Server=localhost;port=5432;Database=SAE_DB; uid=postgres; password=postgres;"));
 
             var app = builder.Build();
 

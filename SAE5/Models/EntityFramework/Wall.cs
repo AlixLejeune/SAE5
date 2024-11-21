@@ -21,15 +21,15 @@ namespace SAE501_Blazor_API.Models.EntityFramework
         }
 
         [Required]
-        [Column("wal_width")]
-        public double Width
+        [Column("wal_length")]
+        public double Length
         {
-            get { return Width; }
+            get { return Length; }
             set
             {
                 if (value <= 0)
-                    throw new ArgumentException("Wall Width error : width cannot be negative");
-                Width = value;
+                    throw new ArgumentException("Wall Length error : length cannot be negative");
+                Length = value;
             }
         }
 
@@ -46,9 +46,33 @@ namespace SAE501_Blazor_API.Models.EntityFramework
             }
         }
 
+        [Required]
+        [Column("fk_wal_roomid")]
+        public int RoomId
+        {
+            get { return RoomId; }
+            set
+            {
+                if (value > 0)
+                    Id = value;
+                else
+                    throw new ArgumentException("Wall foreign RoomId error : Ids must be strictly positive");
+            }
+        }
+
         public double Area()
         {
-            return Height * Width;
+            return Height * Length;
         }
+
+        [ForeignKey(nameof(RoomId))]
+        [InverseProperty(nameof(Room.WallsOfRoom))]
+        public Room Room { get; set; } = null!;
+
+        [InverseProperty(nameof(Window.Wall))]
+        public ICollection<Window> WindowsOfWall { get; set; } = null!;
+
+        [InverseProperty(nameof(Door.Wall))]
+        public ICollection<Door> DoorsOfWall { get; set; } = null!;
     }
 }

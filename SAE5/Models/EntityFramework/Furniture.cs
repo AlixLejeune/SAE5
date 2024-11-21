@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace SAE501_Blazor_API.Models.EntityFramework
 {
     [Table("t_e_furniture_fur")]
-    public class Furniture
+    public class Furniture : Spatial
     {
         [Key]
         [Column("fur_id")]
@@ -34,12 +34,12 @@ namespace SAE501_Blazor_API.Models.EntityFramework
 
         [Required]
         [Column("fur_length")]
-        public double Length
+        public override double Length
         {
             get { return Length; }
             set
             {
-                if (value <= 0)
+                if (value < 0)
                     throw new ArgumentException("Furniture Length error : length cannot be negative");
                 Length = value;
             }
@@ -47,12 +47,12 @@ namespace SAE501_Blazor_API.Models.EntityFramework
 
         [Required]
         [Column("fur_width")]
-        public double Width
+        public override double Width
         {
             get { return Width; }
             set
             {
-                if (value <= 0)
+                if (value < 0)
                     throw new ArgumentException("Furniture Width error : width cannot be negative");
                 Width = value;
             }
@@ -60,25 +60,54 @@ namespace SAE501_Blazor_API.Models.EntityFramework
 
         [Required]
         [Column("fur_height")]
-        public double Height
+        public override double Height
         {
             get { return Height; }
             set
             {
-                if (value <= 0)
+                if (value < 0)
                     throw new ArgumentException("Furniture Height error : height cannot be negative");
                 Height = value;
             }
         }
 
-        public double Area()
+        [Required]
+        [Column("fur_x")]
+        public override double X
         {
-            return Length * Width;
+            get { return X; }
+            set
+            {
+                if (value <= 0)
+                    throw new ArgumentException("Furniture X coordinate error : X cannot be negative");
+                X = value;
+            }
         }
 
-        public double Volume()
+        [Required]
+        [Column("fur_y")]
+        public override double Y
         {
-            return Length * Width * Height;
+            get { return Y; }
+            set
+            {
+                if (value <= 0)
+                    throw new ArgumentException("Furniture Y coordinate error : Y cannot be negative");
+                Y = value;
+            }
+        }
+
+        [Required]
+        [Column("fur_Z")]
+        public override double Z
+        {
+            get { return Z; }
+            set
+            {
+                if (value <= 0)
+                    throw new ArgumentException("Furniture Z coordinate error : Z cannot be negative");
+                Z = value;
+            }
         }
 
         [Required]
