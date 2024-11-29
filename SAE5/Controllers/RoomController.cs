@@ -74,7 +74,7 @@ namespace SAE501_Blazor_API.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<Room>> PostEtudiant(Room r)
+        public async Task<ActionResult<Room>> PostRoom(Room r)
         {
             if (!ModelState.IsValid)
             {
