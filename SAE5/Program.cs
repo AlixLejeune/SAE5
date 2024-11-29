@@ -14,7 +14,7 @@ namespace SAE501_Blazor_API
 
             // Add services to the container.
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -34,7 +34,20 @@ namespace SAE501_Blazor_API
             builder.Services.AddScoped<IDataRepository<Wall>, WallManager>();
             builder.Services.AddScoped<IDataRepository<Window>, WindowManager>();
 
+            //CORS
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("NewPolicy", builder =>
+                builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader());
+            });
+
             var app = builder.Build();
+
+            //Cors policy
+            app.UseRouting();
+            app.UseCors("NewPolicy");
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
