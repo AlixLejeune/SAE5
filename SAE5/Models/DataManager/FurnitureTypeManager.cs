@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SAE501_Blazor_API.Models.EntityFramework;
+using SAE501_Blazor_API.Models.Repositories;
 
 namespace SAE501_Blazor_API.Models.DataManager
 {
-    public class FurnitureTypeManager
+    public class FurnitureTypeManager : IDataRepository<FurnitureType>
     {
         readonly DataContext _context;
 

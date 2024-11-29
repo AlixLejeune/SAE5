@@ -1,6 +1,8 @@
 
 using Microsoft.EntityFrameworkCore;
+using SAE501_Blazor_API.Models.DataManager;
 using SAE501_Blazor_API.Models.EntityFramework;
+using SAE501_Blazor_API.Models.Repositories;
 
 namespace SAE501_Blazor_API
 {
@@ -20,6 +22,17 @@ namespace SAE501_Blazor_API
             //DataContext
             builder.Services.AddDbContext<DataContext>(options =>
                 options.UseNpgsql("Server=localhost;port=5432;Database=SAE_DB; uid=postgres; password=postgres;"));
+
+            //DataRepositories
+            builder.Services.AddScoped<IDataRepository<Building>, BuildingManager>();
+            builder.Services.AddScoped<IDataRepository<Door>, DoorManager>();
+            builder.Services.AddScoped<IDataRepository<Furniture>, FurnitureManager>();
+            builder.Services.AddScoped<IDataRepository<FurnitureType>, FurnitureTypeManager>();
+            builder.Services.AddScoped<IDataRepository<Room>, RoomManager>();
+            builder.Services.AddScoped<IDataRepository<RoomType>, RoomTypeManager>();
+            builder.Services.AddScoped<IDataRepository<Sensor>, SensorManager>();
+            builder.Services.AddScoped<IDataRepository<Wall>, WallManager>();
+            builder.Services.AddScoped<IDataRepository<Window>, WindowManager>();
 
             var app = builder.Build();
 

@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SAE501_Blazor_API.Models.EntityFramework;
+using SAE501_Blazor_API.Models.Repositories;
 
 namespace SAE501_Blazor_API.Models.DataManager
 {
-    public class RoomManager
+    public class RoomManager : IDataRepository<Room>
     {
         readonly DataContext _context;
 
