@@ -34,7 +34,7 @@ namespace SAE501_Blazor_API.Controllers
         {
             var furniture = await dataRepository.GetByIdAsync(id);
 
-            if furniture == null)
+            if (furniture == null)
             {
                 return NotFound();
             }
