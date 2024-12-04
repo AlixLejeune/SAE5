@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using SAE501_Blazor_API.Models.DataManager;
 using SAE501_Blazor_API.Models.EntityFramework;
 using SAE501_Blazor_API.Models.Repositories;
+using System.Text.Json.Serialization;
 
 namespace SAE501_Blazor_API
 {

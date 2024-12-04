@@ -8,57 +8,23 @@ namespace SAE501_Blazor_API.Models.EntityFramework
     {
         [Key]
         [Column("wal_id")]
-        public int Id
-        {
-            get { return Id; }
-            set
-            {
-                if (value > 0)
-                    Id = value;
-                else
-                    throw new ArgumentException("Wall Id error : Ids must be strictly positive");
-            }
-        }
+        [Range(1, Int32.MaxValue, ErrorMessage = "Ids must be positive")]
+        public int Id { get; set; }
 
         [Required]
         [Column("wal_length")]
-        public double Length
-        {
-            get { return Length; }
-            set
-            {
-                if (value <= 0)
-                    throw new ArgumentException("Wall Length error : length cannot be negative");
-                Length = value;
-            }
-        }
+        [Range(0, Double.MaxValue, ErrorMessage = "Lengths must be positive")]
+        public double Length { get; set; }
 
         [Required]
         [Column("wal_height")]
-        public double Height
-        {
-            get { return Height; }
-            set
-            {
-                if (value <= 0)
-                    throw new ArgumentException("Wall Height error : height cannot be negative");
-                Height = value;
-            }
-        }
+        [Range(0, Double.MaxValue, ErrorMessage = "Heights must be positive")]
+        public double Height { get; set; }
 
         [Required]
         [Column("fk_wal_roomid")]
-        public int RoomId
-        {
-            get { return RoomId; }
-            set
-            {
-                if (value > 0)
-                    Id = value;
-                else
-                    throw new ArgumentException("Wall foreign RoomId error : Ids must be strictly positive");
-            }
-        }
+        [Range(1, Int32.MaxValue, ErrorMessage = "Ids must be positive")]
+        public int RoomId { get; set; }
 
         public double Area()
         {

@@ -6,30 +6,23 @@ namespace SAE501_Blazor_API.Models.EntityFramework
     [Table("t_e_room_roo")]
     public class Room
     {
+        private string code;
+
         [Key]
         [Column("roo_id")]
-        public int Id 
-        { 
-            get { return Id; }
-            set
-            {
-                if (value > 0)
-                    Id = value;
-                else
-                    throw new ArgumentException("Room Id error : Ids must be strictly positive");
-            }
-        }
+        [Range(1, Int32.MaxValue, ErrorMessage = "Ids must be positive")]
+        public int Id { get; set; }
 
         //3-digits room code
         [Required]
         [Column("roo_code")]
         public string Code
         {
-            get { return Code; }
+            get { return code; }
             set
             {
                 if (int.TryParse(value, out int result) && result >= 0 && result < 1000)
-                    Code = value;
+                    code = value;
                 else
                     throw new ArgumentException("Room Code error : room code have to be a 3 digit code");
             }
@@ -102,31 +95,13 @@ namespace SAE501_Blazor_API.Models.EntityFramework
 
         [Required]
         [Column("fk_roo_buildingid")]
-        public int BuildingId
-        {
-            get { return BuildingId; }
-            set
-            {
-                if (value > 0)
-                    Id = value;
-                else
-                    throw new ArgumentException("Room foreign building Id error : Ids must be strictly positive");
-            }
-        }
+        [Range(1, Int32.MaxValue, ErrorMessage = "Ids must be positive")]
+        public int BuildingId { get; set; }
 
         [Required]
         [Column("fk_roo_roomtypeid")]
-        public int RoomTypeId
-        {
-            get { return RoomTypeId; }
-            set
-            {
-                if (value > 0)
-                    Id = value;
-                else
-                    throw new ArgumentException("Room foreign RoomType Id error : Ids must be strictly positive");
-            }
-        }
+        [Range(1, Int32.MaxValue, ErrorMessage = "Ids must be positive")]
+        public int RoomTypeId { get; set; }
 
         [ForeignKey(nameof(BuildingId))]
         [InverseProperty(nameof(Building.RoomsOfBuilding))]

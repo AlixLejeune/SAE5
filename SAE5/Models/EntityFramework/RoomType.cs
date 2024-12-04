@@ -6,29 +6,22 @@ namespace SAE501_Blazor_API.Models.EntityFramework
     [Table("t_e_roomtype_rty")]
     public class RoomType
     {
+        private string name;
+
         [Key]
         [Column("rty_id")]
-        public int Id
-        {
-            get { return Id; }
-            set
-            {
-                if (value > 0)
-                    Id = value;
-                else
-                    throw new ArgumentException("RoomType Id error : Ids must be strictly positive");
-            }
-        }
+        [Range(1, Int32.MaxValue, ErrorMessage = "Ids must be positive")]
+        public int Id { get; set; }
 
         [Required]
         [MaxLength(25)]
         [Column("rty_name")]
         public string Name
         {
-            get { return Name; }
+            get { return name; }
             set
             {
-                Name = value.ToUpper();
+                name = value.ToUpper();
             }
         }
 

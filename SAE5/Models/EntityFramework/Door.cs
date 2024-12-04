@@ -8,56 +8,22 @@ namespace SAE501_Blazor_API.Models.EntityFramework
     {
         [Key]
         [Column("doo_id")]
-        public int Id
-        {
-            get { return Id; }
-            set
-            {
-                if (value > 0)
-                    Id = value;
-                else
-                    throw new ArgumentException("Door Id error : Ids must be strictly positive");
-            }
-        }
+        [Range(1, Int32.MaxValue, ErrorMessage = "Ids must be positive")]
+        public int Id { get; set; }
 
         [Required]
         [Column("doo_length")]
-        public double Length
-        {
-            get { return Length; }
-            set
-            {
-                if (value <= 0)
-                    throw new ArgumentException("Door Length error : length cannot be negative");
-                Length = value;
-            }
-        }
+        [Range(0, Double.MaxValue, ErrorMessage = "Lengths must be positive")]
+        public double Length { get; set; }
 
         [Required]
         [Column("doo_height")]
-        public double Height
-        {
-            get { return Height; }
-            set
-            {
-                if (value <= 0)
-                    throw new ArgumentException("Door Height error : height cannot be negative");
-                Height = value;
-            }
-        }
+        [Range(0, Double.MaxValue, ErrorMessage = "Heights must be positive")]
+        public double Height { get; set; }
 
         [Column("fk_doo_wallid")]
-        public int WallId
-        {
-            get { return Id; }
-            set
-            {
-                if (value > 0)
-                    Id = value;
-                else
-                    throw new ArgumentException("Door foreign WallId error : Ids must be strictly positive");
-            }
-        }
+        [Range(1, Int32.MaxValue, ErrorMessage = "Ids must be positive")]
+        public int WallId { get; set; }
 
         [ForeignKey(nameof(WallId))]
         [InverseProperty(nameof(Wall.DoorsOfWall))]
