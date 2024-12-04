@@ -28,7 +28,7 @@ namespace SAE501_Blazor_API.Models.EntityFramework
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseNpgsql("SAE_DB");
+                optionsBuilder.UseNpgsql("SAE_DB_Local");
             }
         }
 
