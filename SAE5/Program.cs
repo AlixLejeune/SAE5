@@ -13,7 +13,9 @@ namespace SAE501_Blazor_API
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            // Add services to the container
+            builder.Configuration.AddEnvironmentVariables("AZURE_");
+            // AZURE_JWTSECRET__SECRETKEY => builder.Configuration["JwtSecret:SecretKey"]
 
             builder.Services.AddControllers(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -21,8 +23,8 @@ namespace SAE501_Blazor_API
             builder.Services.AddSwaggerGen();
 
             //DataContext
-            builder.Services.AddDbContext<DataContext>(options =>
-                options.UseNpgsql("Server=localhost;port=5432;Database=SAE_DB; uid=postgres; password=postgres;"));
+            builder.Services.AddDbContext<DataContext>(options => 
+            options.UseNpgsql($"Server={builder.Configuration["Server"]};port={builder.Configuration["Port"]};Database={builder.Configuration["Db"]}; uid={builder.Configuration["uid"]}; password={builder.Configuration["Password"]};"));
 
             //DataRepositories
             builder.Services.AddScoped<IDataRepository<Building>, BuildingManager>();
