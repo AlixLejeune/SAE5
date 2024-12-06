@@ -10,7 +10,6 @@ namespace SAE501_Blazor_API.Models.EntityFramework
 
         [Key]
         [Column("fur_id")]
-        [Range(1, Int32.MaxValue, ErrorMessage = "Ids must be positive")]
         public int Id { get; set; }
 
         [Required]
@@ -57,12 +56,10 @@ namespace SAE501_Blazor_API.Models.EntityFramework
 
         [Required]
         [Column("fk_fur_roomid")]
-        [Range(1, Int32.MaxValue, ErrorMessage = "Ids must be positive")]
         public int RoomId { get; set; }
 
         [Required]
         [Column("fk_fur_furnituretypeid")]
-        [Range(1, Int32.MaxValue, ErrorMessage = "Ids must be positive")]
         public int FurnitureTypeId { get; set; }
 
         [ForeignKey(nameof(RoomId))]

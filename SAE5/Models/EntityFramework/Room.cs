@@ -10,7 +10,6 @@ namespace SAE501_Blazor_API.Models.EntityFramework
 
         [Key]
         [Column("roo_id")]
-        [Range(1, Int32.MaxValue, ErrorMessage = "Ids must be positive")]
         public int Id { get; set; }
 
         //3-digits room code
@@ -95,12 +94,10 @@ namespace SAE501_Blazor_API.Models.EntityFramework
 
         [Required]
         [Column("fk_roo_buildingid")]
-        [Range(1, Int32.MaxValue, ErrorMessage = "Ids must be positive")]
         public int BuildingId { get; set; }
 
         [Required]
         [Column("fk_roo_roomtypeid")]
-        [Range(1, Int32.MaxValue, ErrorMessage = "Ids must be positive")]
         public int RoomTypeId { get; set; }
 
         [ForeignKey(nameof(BuildingId))]

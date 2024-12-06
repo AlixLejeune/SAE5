@@ -8,7 +8,6 @@ namespace SAE501_Blazor_API.Models.EntityFramework
     {
         [Key]
         [Column("wal_id")]
-        [Range(1, Int32.MaxValue, ErrorMessage = "Ids must be positive")]
         public int Id { get; set; }
 
         [Required]
@@ -23,7 +22,6 @@ namespace SAE501_Blazor_API.Models.EntityFramework
 
         [Required]
         [Column("fk_wal_roomid")]
-        [Range(1, Int32.MaxValue, ErrorMessage = "Ids must be positive")]
         public int RoomId { get; set; }
 
         public double Area()

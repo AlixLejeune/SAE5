@@ -24,7 +24,10 @@ namespace SAE501_Blazor_API
 
             //DataContext
             builder.Services.AddDbContext<DataContext>(options => 
-            options.UseNpgsql($"Server={builder.Configuration["Server"]};port={builder.Configuration["Port"]};Database={builder.Configuration["Db"]}; uid={builder.Configuration["uid"]}; password={builder.Configuration["Password"]};"));
+            options.UseNpgsql($"Server={builder.Configuration["Server"]};port={builder.Configuration["Port"]};Database={builder.Configuration["Db"]};uid={builder.Configuration["uid"]};password={builder.Configuration["Password"]};"));
+
+            //Local DataContext
+            //builder.Services.AddDbContext<DataContext>(options => options.UseNpgsql("Server=localhost;port=5432;Database=SAE_DB;uid=postgres;password=postgres;"));
 
             //DataRepositories
             builder.Services.AddScoped<IDataRepository<Building>, BuildingManager>();

@@ -8,7 +8,6 @@ namespace SAE501_Blazor_API.Models.EntityFramework
     {
         [Key]
         [Column("sen_id")]
-        [Range(1, Int32.MaxValue, ErrorMessage = "Ids must be positive")]
         public int Id { get; set; }
 
         [Required]

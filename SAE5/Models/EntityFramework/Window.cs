@@ -8,7 +8,6 @@ namespace SAE501_Blazor_API.Models.EntityFramework
     {
         [Key]
         [Column("win_id")]
-        [Range(1, Int32.MaxValue, ErrorMessage = "Ids must be positive")]
         public int Id { get; set; }
 
         [Required]
@@ -22,7 +21,6 @@ namespace SAE501_Blazor_API.Models.EntityFramework
         public double Height { get; set; }
 
         [Column("fk_win_wallid")]
-        [Range(1, Int32.MaxValue, ErrorMessage = "Ids must be positive")]
         public int WallId { get; set; }
 
         [ForeignKey(nameof(WallId))]
