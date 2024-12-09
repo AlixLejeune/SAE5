@@ -17,14 +17,14 @@ namespace SAE501_Blazor_API.Controllers
             dataRepository = dataRepo;
         }
 
-        // GET: api/Doors
+        // GET: api/Door
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Door>>> GetDoors()
         {
             return await dataRepository.GetAllAsync();
         }
 
-        // GET: api/Doors/5
+        // GET: api/Door/getbyid/5
         [HttpGet]
         [Route("[action]/{id}")]
         [ActionName("GetById")]
@@ -43,7 +43,7 @@ namespace SAE501_Blazor_API.Controllers
         }
 
 
-        // PUT: api/Doors/5
+        // PUT: api/Door/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

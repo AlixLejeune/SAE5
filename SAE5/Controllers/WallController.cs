@@ -18,14 +18,14 @@ namespace SAE501_Blazor_API.Controllers
             dataRepository = dataRepo;
         }
 
-        // GET: api/Walls
+        // GET: api/Wall
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Wall>>> GetWalls()
         {
             return await dataRepository.GetAllAsync();
         }
 
-        // GET: api/Walls/5
+        // GET: api/Wall/getbyid/5
         [HttpGet]
         [Route("[action]/{id}")]
         [ActionName("GetById")]
@@ -44,7 +44,7 @@ namespace SAE501_Blazor_API.Controllers
         }
 
 
-        // PUT: api/Walls/5
+        // PUT: api/Wall/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

@@ -17,14 +17,14 @@ namespace SAE501_Blazor_API.Controllers
             dataRepository = dataRepo;
         }
 
-        // GET: api/Furnitures
+        // GET: api/Furniture
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Furniture>>> GetFurnitures()
         {
             return await dataRepository.GetAllAsync();
         }
 
-        // GET: api/Furnitures/5
+        // GET: api/Furniture/getbyid/5
         [HttpGet]
         [Route("[action]/{id}")]
         [ActionName("GetById")]
@@ -43,7 +43,7 @@ namespace SAE501_Blazor_API.Controllers
         }
 
 
-        // PUT: api/Furnitures/5
+        // PUT: api/Furniture/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

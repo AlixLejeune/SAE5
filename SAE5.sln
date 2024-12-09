@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAE501_Blazor_API", "SAE5\SAE501_Blazor_API.csproj", "{3A875C07-C275-47E4-A18C-02D667F6AEA3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SAE501_Blazor_API", "SAE5\SAE501_Blazor_API.csproj", "{3A875C07-C275-47E4-A18C-02D667F6AEA3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAE501_Blazor_API_Tests", "SAE501_Blazor_API_Tests\SAE501_Blazor_API_Tests.csproj", "{5801AE47-7F21-42D9-85D8-7F3F9A903AF2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{3A875C07-C275-47E4-A18C-02D667F6AEA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A875C07-C275-47E4-A18C-02D667F6AEA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A875C07-C275-47E4-A18C-02D667F6AEA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5801AE47-7F21-42D9-85D8-7F3F9A903AF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5801AE47-7F21-42D9-85D8-7F3F9A903AF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5801AE47-7F21-42D9-85D8-7F3F9A903AF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5801AE47-7F21-42D9-85D8-7F3F9A903AF2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

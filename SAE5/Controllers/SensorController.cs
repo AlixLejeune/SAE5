@@ -17,14 +17,14 @@ namespace SAE501_Blazor_API.Controllers
             dataRepository = dataRepo;
         }
 
-        // GET: api/Sensors
+        // GET: api/Sensor
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Sensor>>> GetSensors()
         {
             return await dataRepository.GetAllAsync();
         }
 
-        // GET: api/Sensors/5
+        // GET: api/Sensor/getbyid/5
         [HttpGet]
         [Route("[action]/{id}")]
         [ActionName("GetById")]
@@ -43,7 +43,7 @@ namespace SAE501_Blazor_API.Controllers
         }
 
 
-        // PUT: api/Sensors/5
+        // PUT: api/Sensor/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
