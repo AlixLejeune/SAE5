@@ -1,30 +1,20 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SAE501_Blazor_API.Models.EntityFramework
+namespace ConsoleApp1.Models
 {
     [Table("t_e_roomtype_rty")]
     public class RoomType
     {
-        private string name;
-
         [Key]
         [Column("rty_id")]
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(25)]
         [Column("rty_name")]
-        public string Name
-        {
-            get { return name; }
-            set
-            {
-                name = value.ToUpper();
-            }
-        }
+        public string Name { get; set; }
 
-        [InverseProperty(nameof(Room.RoomTypeOfRoom))]
-        public ICollection<Room> RoomsOfSuchRoomType { get; set; } = null!;
+        [InverseProperty(nameof(Room.IdRoomType))]
+        public virtual ICollection<Room> Rooms { get; set; }
     }
 }
