@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ConsoleApp1.Models
+namespace SAE501_Blazor_API.Models.EntityFramework
 {
     [Table("t_e_building_bui")]
     public class Building
@@ -15,6 +15,6 @@ namespace ConsoleApp1.Models
         public string Name { get; set; }
 
         [InverseProperty(nameof(Room.IdBuilding))]
-        public virtual ICollection<Room> Rooms { get; set; }
+        public virtual ICollection<Room> Rooms { get; set; } = new List<Room>();
     }
 }

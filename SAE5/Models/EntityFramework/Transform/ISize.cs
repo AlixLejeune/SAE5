@@ -1,4 +1,4 @@
-﻿namespace ConsoleApp1.Models.Transform
+﻿namespace SAE501_Blazor_API.Models.EntityFramework.Transform
 {
     public interface ISize
     {

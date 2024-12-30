@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using SAE501_Blazor_API.Models.EntityFramework.RoomObjects;
 using System.Numerics;
 
-namespace ConsoleApp1.Models
+namespace SAE501_Blazor_API.Models.EntityFramework
 {
     [Table("t_e_room_roo")]
     public class Room
@@ -24,7 +25,7 @@ namespace ConsoleApp1.Models
 
         [Required]
         [Column("roo_base")]
-        public List<Vector2> Base { get; set; }
+        public List<Vector2D> Base { get; set; }
 
         [Required]
         [Column("roo_buildingid")]
@@ -42,8 +43,10 @@ namespace ConsoleApp1.Models
         [InverseProperty(nameof(RoomType.Rooms))]
         public virtual RoomType RoomType { get; set; }
 
-        [ForeignKey(nameof(IdBuilding))]
-        [InverseProperty(nameof(Building.Rooms))]
-        public virtual
+
+        [InverseProperty(nameof(RoomObject.Room))]
+        public virtual List<RoomObject> ObjectsOfRoom { get; set; } = new List<RoomObject>();
     }
+
+    
 }

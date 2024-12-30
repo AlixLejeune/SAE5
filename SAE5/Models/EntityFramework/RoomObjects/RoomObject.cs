@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ConsoleApp1.Models.RoomObjects
+namespace SAE501_Blazor_API.Models.EntityFramework.RoomObjects
 {
     [Table("t_e_roomboject_rob")]
     public abstract class RoomObject
@@ -19,7 +19,7 @@ namespace ConsoleApp1.Models.RoomObjects
         public int IdRoom { get; set; }
 
         [ForeignKey(nameof(IdRoom))]
-        [InverseProperty(nameof(Room.Obje))]
-        public virtual Room Room { get; set; }
+        [InverseProperty(nameof(Room.ObjectsOfRoom))]
+        public virtual Room Room { get; set; } = null!;
     }
 }

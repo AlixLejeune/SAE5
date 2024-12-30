@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SAE501_Blazor_API.Models.EntityFramework.RoomObjects;
 
 namespace SAE501_Blazor_API.Models.EntityFramework
 {
@@ -14,14 +15,20 @@ namespace SAE501_Blazor_API.Models.EntityFramework
         }
 
         public virtual DbSet<Building> buildings { get; set; } = null!;
-        public virtual DbSet<Door> doors { get; set; } = null!;
-        public virtual DbSet<Furniture> furnitures { get; set; } = null!;
-        public virtual DbSet<FurnitureType> furnitureTypes { get; set; } = null!;
         public virtual DbSet<Room> rooms { get; set; } = null!;
         public virtual DbSet<RoomType> roomTypes { get; set; } = null!;
-        public virtual DbSet<Sensor> sensors { get; set; } = null!;
-        public virtual DbSet<Wall> walls { get; set; } = null!;
+        public virtual DbSet<Door> doors { get; set; } = null!;
+        public virtual DbSet<Heater> heater { get; set; } = null!;
+        public virtual DbSet<Lamp> lamps { get; set; } = null!;
+        public virtual DbSet<Plug> plugs { get; set; } = null!;
+        public virtual DbSet<RoomObject> roomobjects { get; set; } = null!; //to get the table of all room objects ?
+        public virtual DbSet<Sensor6in1> sensors6In1 { get; set; } = null!;
+        public virtual DbSet<Sensor9in1> sensors9In1 { get; set; } = null!;
+        public virtual DbSet<SensorCO2> sensorsCO2 { get; set; } = null!;
+        public virtual DbSet<Siren> sirens { get; set; } = null!;
+        public virtual DbSet<Table> tables { get; set; } = null!;
         public virtual DbSet<Window> windows { get; set; } = null!;
+
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -35,13 +42,18 @@ namespace SAE501_Blazor_API.Models.EntityFramework
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Building>();
-            modelBuilder.Entity<Door>();
-            modelBuilder.Entity<Furniture>();
-            modelBuilder.Entity<FurnitureType>();
             modelBuilder.Entity<Room>();
             modelBuilder.Entity<RoomType>();
-            modelBuilder.Entity<Sensor>();
-            modelBuilder.Entity<Wall>();
+            modelBuilder.Entity<Door>();
+            modelBuilder.Entity<Heater>();
+            modelBuilder.Entity<Lamp>();
+            modelBuilder.Entity<Plug>();
+            modelBuilder.Entity<RoomObject>();
+            modelBuilder.Entity<Sensor6in1>();
+            modelBuilder.Entity<Sensor9in1>();
+            modelBuilder.Entity<SensorCO2>();
+            modelBuilder.Entity<Siren>();
+            modelBuilder.Entity<Table>();
             modelBuilder.Entity<Window>();
         }
     }
