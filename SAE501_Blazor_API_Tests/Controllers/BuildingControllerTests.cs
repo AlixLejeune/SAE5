@@ -19,7 +19,6 @@ namespace SAE501_Blazor_API.Controllers.Tests
         {
             Id = 1,
             Name = "Informatique",
-            Letter = "D"
         };
 
         private List<Building> buildingsListTests = new List<Building>() { testBuilding };
@@ -72,7 +71,6 @@ namespace SAE501_Blazor_API.Controllers.Tests
             {
                 Id = 1,
                 Name = "Infos",
-                Letter = "U"
             };
 
             var result = _controller.PutBuilding(1, testPutBuilding);
@@ -106,7 +104,6 @@ namespace SAE501_Blazor_API.Controllers.Tests
             {
                 Id = 2,
                 Name = "Infos",
-                Letter = "U"
             };
 
             var result = _controller.PutBuilding(2, testPutBuilding);

@@ -14,7 +14,7 @@ namespace SAE501_Blazor_API.Models.EntityFramework
         [Column("rty_name")]
         public string Name { get; set; }
 
-        [InverseProperty(nameof(Room.IdRoomType))]
+        [InverseProperty(nameof(Room.RoomType))]
         public virtual ICollection<Room> Rooms { get; set; } = new List<Room>();
     }
 }

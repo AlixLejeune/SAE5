@@ -8,73 +8,73 @@ namespace SAE501_Blazor_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DoorController : ControllerBase
+    public class TableController : ControllerBase
     {
-        private readonly IDataRepository<Door> dataRepository;
+        private readonly IDataRepository<Table> dataRepository;
 
-        public DoorController(IDataRepository<Door> dataRepo)
+        public TableController(IDataRepository<Table> dataRepo)
         {
             dataRepository = dataRepo;
         }
 
-        // GET: api/Door
+        // GET: api/Table
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Door>>> GetDoors()
+        public async Task<ActionResult<IEnumerable<Table>>> GetTables()
         {
             return await dataRepository.GetAllAsync();
         }
 
-        // GET: api/Door/getbyid/5
+        // GET: api/Table/getbyid/5
         [HttpGet]
         [Route("[action]/{id}")]
         [ActionName("GetById")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<Door>> GetDoor(int id)
+        public async Task<ActionResult<Table>> GetTable(int id)
         {
-            var door = await dataRepository.GetByIdAsync(id);
+            var table = await dataRepository.GetByIdAsync(id);
 
-            if (door == null)
+            if (table == null)
             {
                 return NotFound();
             }
 
-            return door;
+            return table;
         }
 
 
-        // PUT: api/Door/5
+        // PUT: api/Table/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> PutDoor(int id, Door d)
+        public async Task<IActionResult> PutTable(int id, Table d)
         {
             if (id != d.Id)
             {
                 return BadRequest();
             }
 
-            var doorUpdate = await dataRepository.GetByIdAsync(id);
+            var tableUpdate = await dataRepository.GetByIdAsync(id);
 
-            if (doorUpdate == null)
+            if (tableUpdate == null)
             {
                 return NotFound();
             }
             else
             {
-                await dataRepository.UpdateAsync(doorUpdate.Value, d);
+                await dataRepository.UpdateAsync(tableUpdate.Value, d);
                 return NoContent();
             }
         }
 
-        // POST: api/Door
+        // POST: api/Table
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<Door>> PostDoor(Door d)
+        public async Task<ActionResult<Table>> PostTable(Table d)
         {
             if (!ModelState.IsValid)
             {
@@ -86,19 +86,19 @@ namespace SAE501_Blazor_API.Controllers
             return CreatedAtAction("GetById", new { id = d.Id }, d);
         }
 
-        // DELETE: api/Door/5
+        // DELETE: api/Table/5
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> DeleteDoor(int id)
+        public async Task<IActionResult> DeleteTable(int id)
         {
-            var door = await dataRepository.GetByIdAsync(id);
-            if (door == null)
+            var table = await dataRepository.GetByIdAsync(id);
+            if (table == null)
             {
                 return NotFound();
             }
 
-            await dataRepository.DeleteAsync(door.Value);
+            await dataRepository.DeleteAsync(table.Value);
             return NoContent();
         }
     }

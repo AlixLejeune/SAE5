@@ -2,10 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using SAE501_Blazor_API.Models.EntityFramework.RoomObjects;
 using SAE501_Blazor_API.Models.EntityFramework;
+using SAE501_Blazor_API.Models.Repositories;
 
 namespace SAE501_Blazor_API.Models.DataManager
 {
-    public class HeaterManager
+    public class HeaterManager : IDataRepository<Heater>
     {
         readonly DataContext _context;
 

@@ -1,4 +1,6 @@
 
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace SAE501_Blazor_API.Models.EntityFramework
 {
     public class Vector2D

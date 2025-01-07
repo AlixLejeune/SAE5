@@ -28,20 +28,20 @@ namespace SAE501_Blazor_API.Models.EntityFramework
         public List<Vector2D> Base { get; set; } = new List<Vector2D>();
 
         [Required]
-        [Column("roo_buildingid")]
+        [Column("fk_roo_buildingid")]
         public int IdBuilding { get; set; }
 
         [ForeignKey(nameof(IdBuilding))]
         [InverseProperty(nameof(Building.Rooms))]
-        public virtual Building Building { get; set; }
+        public virtual Building Building { get; set; } = null!;
 
         [Required]
-        [Column("roo_idroomtype")]
+        [Column("fk_roo_idroomtype")]
         public int IdRoomType { get; set; }
 
         [ForeignKey(nameof(IdRoomType))]
         [InverseProperty(nameof(RoomType.Rooms))]
-        public virtual RoomType RoomType { get; set; }
+        public virtual RoomType RoomType { get; set; } = null!;
 
 
         [InverseProperty(nameof(RoomObject.Room))]

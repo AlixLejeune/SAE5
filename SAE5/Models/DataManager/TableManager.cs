@@ -2,10 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using SAE501_Blazor_API.Models.EntityFramework.RoomObjects;
 using SAE501_Blazor_API.Models.EntityFramework;
+using SAE501_Blazor_API.Models.Repositories;
 
 namespace SAE501_Blazor_API.Models.DataManager
 {
-    public class TableManager
+    public class TableManager : IDataRepository<Table>
     {
         readonly DataContext _context;
 

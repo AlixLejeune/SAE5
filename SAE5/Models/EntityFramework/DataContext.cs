@@ -44,7 +44,7 @@ namespace SAE501_Blazor_API.Models.EntityFramework
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Building>();
-            modelBuilder.Entity<Room>();
+            modelBuilder.Entity<Room>().OwnsMany(e => e.Base, d => d.ToJson());
             modelBuilder.Entity<RoomType>();
             modelBuilder.Entity<Door>();
             modelBuilder.Entity<Heater>();
