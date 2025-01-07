@@ -25,7 +25,7 @@ namespace SAE501_Blazor_API.Models.EntityFramework
 
         [Required]
         [Column("roo_base")]
-        public List<Vector2D> Base { get; set; }
+        public List<Vector2D> Base { get; set; } = new List<Vector2D>();
 
         [Required]
         [Column("roo_buildingid")]
