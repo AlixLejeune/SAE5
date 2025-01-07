@@ -1,10 +1,10 @@
 ﻿using SAE501_Blazor_API.Models.EntityFramework.Transform;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SAE501_Blazor_API.Models.EntityFramework.RoomObjects
+namespace SAE501_Blazor_API.Models.EntityFramework.RoomObjects.ConnectedObjects
 {
     [Table("t_e_siren_sir")]
-    public class Siren : RoomObject, IPosition, IRotation
+    public class Siren : ConnectedObject, IPosition, IRotation
     {
         [Column("sir_posx")]
         public double PosX { get; set; }

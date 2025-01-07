@@ -1,27 +1,27 @@
 ﻿using SAE501_Blazor_API.Models.EntityFramework.Transform;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SAE501_Blazor_API.Models.EntityFramework.RoomObjects
+namespace SAE501_Blazor_API.Models.EntityFramework.RoomObjects.ConnectedObjects
 {
-    [Table("t_e_sensor9in1_nio")]
-    public class Sensor9in1 : RoomObject, IPosition, IRotation
+    [Table("t_e_plug_plu")]
+    public class Plug : ConnectedObject, IPosition, IRotation
     {
-        [Column("nio_posx")]
+        [Column("plu_posx")]
         public double PosX { get; set; }
 
-        [Column("nio_posy")]
+        [Column("plu_posy")]
         public double PosY { get; set; }
 
-        [Column("nio_posz")]
+        [Column("plu_posz")]
         public double PosZ { get; set; }
 
-        [Column("nio_rotx")]
+        [Column("plu_rotx")]
         public double RotX { get; set; }
 
-        [Column("nio_roty")]
+        [Column("plu_roty")]
         public double RotY { get; set; }
 
-        [Column("nio_rotz")]
+        [Column("plu_rotz")]
         public double RotZ { get; set; }
     }
 }

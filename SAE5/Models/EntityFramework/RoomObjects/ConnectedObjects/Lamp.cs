@@ -1,10 +1,10 @@
 ﻿using SAE501_Blazor_API.Models.EntityFramework.Transform;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SAE501_Blazor_API.Models.EntityFramework.RoomObjects
+namespace SAE501_Blazor_API.Models.EntityFramework.RoomObjects.ConnectedObjects
 {
     [Table("t_e_lamp_lam")]
-    public class Lamp : RoomObject, IPosition, IRotation
+    public class Lamp : ConnectedObject, IPosition, IRotation
     {
         [Column("lam_posx")]
         public double PosX { get; set; }

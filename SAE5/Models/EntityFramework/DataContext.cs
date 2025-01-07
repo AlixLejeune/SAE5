@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SAE501_Blazor_API.Models.EntityFramework.RoomObjects;
+using SAE501_Blazor_API.Models.EntityFramework.RoomObjects.ConnectedObjects;
 
 namespace SAE501_Blazor_API.Models.EntityFramework
 {
