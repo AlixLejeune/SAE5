@@ -3,7 +3,7 @@ using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace AbstractClassParsing.Utils
+namespace SAE501_Blazor_API.Utils
 {
     public class RoomObjectJSONConverter : JsonConverter<RoomObject>
     {

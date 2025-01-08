@@ -38,6 +38,7 @@ namespace SAE501_Blazor_API
             builder.Services.AddScoped<IDataRepository<RoomType>, RoomTypeManager>();
             builder.Services.AddScoped<IDataRepository<Table>, TableManager>();
             builder.Services.AddScoped<IDataRepository<Window>, WindowManager>();
+            builder.Services.AddScoped<IDataRepository<RoomObject>, RoomObjectsManager>();
 
             //CORS
             builder.Services.AddCors(options =>

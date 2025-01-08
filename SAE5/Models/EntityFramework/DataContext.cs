@@ -22,7 +22,7 @@ namespace SAE501_Blazor_API.Models.EntityFramework
         public virtual DbSet<Heater> heaters { get; set; } = null!;
         public virtual DbSet<Lamp> lamps { get; set; } = null!;
         public virtual DbSet<Plug> plugs { get; set; } = null!;
-        public virtual DbSet<RoomObject> roomobjects { get; set; } = null!; //to get the table of all room objects ?
+        public virtual DbSet<RoomObject> roomObjects { get; set; } = null!; //to get the table of all room objects ?
         public virtual DbSet<ConnectedObject> connectedObjects { get; set; } = null!; //same as previous for connected objects ?
         public virtual DbSet<Sensor6in1> sensors6In1 { get; set; } = null!;
         public virtual DbSet<Sensor9in1> sensors9In1 { get; set; } = null!;
