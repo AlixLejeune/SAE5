@@ -4,6 +4,7 @@ using SAE501_Blazor_API.Models.DataManager;
 using SAE501_Blazor_API.Models.EntityFramework;
 using SAE501_Blazor_API.Models.EntityFramework.RoomObjects;
 using SAE501_Blazor_API.Models.Repositories;
+using SAE501_Blazor_API.Utils;
 using System.Text.Json.Serialization;
 
 namespace SAE501_Blazor_API
@@ -18,7 +19,12 @@ namespace SAE501_Blazor_API
             builder.Configuration.AddEnvironmentVariables("AZURE_");
             // AZURE_JWTSECRET__SECRETKEY => builder.Configuration["JwtSecret:SecretKey"]
 
-            builder.Services.AddControllers(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
+            builder.Services.AddControllers(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true)
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+                    options.JsonSerializerOptions.Converters.Add(new RoomObjectJSONConverter());
+                });
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
