@@ -11,8 +11,8 @@ using SAE501_Blazor_API.Models.EntityFramework;
 namespace SAE501_Blazor_API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250107161759_test2")]
-    partial class test2
+    [Migration("20250111164804_remote-db-push_with-new-models")]
+    partial class remotedbpush_withnewmodels
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

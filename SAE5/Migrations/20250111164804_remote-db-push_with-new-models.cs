@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace SAE501_Blazor_API.Migrations
 {
     /// <inheritdoc />
-    public partial class test : Migration
+    public partial class remotedbpush_withnewmodels : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

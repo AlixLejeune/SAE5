@@ -30,11 +30,11 @@ namespace SAE501_Blazor_API
             builder.Services.AddSwaggerGen();
 
             //DataContext
-            //builder.Services.AddDbContext<DataContext>(options => 
-            //options.UseNpgsql($"Server={builder.Configuration["Server"]};port={builder.Configuration["Port"]};Database={builder.Configuration["Db"]};uid={builder.Configuration["uid"]};password={builder.Configuration["Password"]};"));
+            builder.Services.AddDbContext<DataContext>(options => 
+            options.UseNpgsql($"Server={builder.Configuration["Server"]};port={builder.Configuration["Port"]};Database={builder.Configuration["Db"]};uid={builder.Configuration["uid"]};password={builder.Configuration["Password"]};"));
 
             //Local DataContext
-            builder.Services.AddDbContext<DataContext>(options => options.UseNpgsql("Server=localhost;port=5432;Database=SAE_DB;uid=postgres;password=postgres;"));
+            //builder.Services.AddDbContext<DataContext>(options => options.UseNpgsql("Server=localhost;port=5432;Database=SAE_DB;uid=postgres;password=postgres;"));
 
             //DataRepositories
             builder.Services.AddScoped<IDataRepository<Building>, BuildingManager>();
@@ -66,7 +66,7 @@ namespace SAE501_Blazor_API
             {
                 
             }
-            //à remettre dans le if
+            //à remettre dans le if, en version finale, Swagger doit être désactivé
             app.UseSwagger();
             app.UseSwaggerUI();
 
