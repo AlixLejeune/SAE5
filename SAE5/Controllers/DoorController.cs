@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SAE501_Blazor_API.Models.EntityFramework;
+using SAE501_Blazor_API.Models.EntityFramework.RoomObjects;
 using SAE501_Blazor_API.Models.Repositories;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860

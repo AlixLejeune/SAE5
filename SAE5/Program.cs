@@ -2,7 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using SAE501_Blazor_API.Models.DataManager;
 using SAE501_Blazor_API.Models.EntityFramework;
+using SAE501_Blazor_API.Models.EntityFramework.RoomObjects;
 using SAE501_Blazor_API.Models.Repositories;
+using SAE501_Blazor_API.Utils;
 using System.Text.Json.Serialization;
 
 namespace SAE501_Blazor_API
@@ -17,7 +19,12 @@ namespace SAE501_Blazor_API
             builder.Configuration.AddEnvironmentVariables("AZURE_");
             // AZURE_JWTSECRET__SECRETKEY => builder.Configuration["JwtSecret:SecretKey"]
 
-            builder.Services.AddControllers(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
+            builder.Services.AddControllers(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true)
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+                    options.JsonSerializerOptions.Converters.Add(new RoomObjectJSONConverter());
+                });
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -32,13 +39,12 @@ namespace SAE501_Blazor_API
             //DataRepositories
             builder.Services.AddScoped<IDataRepository<Building>, BuildingManager>();
             builder.Services.AddScoped<IDataRepository<Door>, DoorManager>();
-            builder.Services.AddScoped<IDataRepository<Furniture>, FurnitureManager>();
-            builder.Services.AddScoped<IDataRepository<FurnitureType>, FurnitureTypeManager>();
+            builder.Services.AddScoped<IDataRepository<Heater>, HeaterManager>();
             builder.Services.AddScoped<IDataRepository<Room>, RoomManager>();
             builder.Services.AddScoped<IDataRepository<RoomType>, RoomTypeManager>();
-            builder.Services.AddScoped<IDataRepository<Sensor>, SensorManager>();
-            builder.Services.AddScoped<IDataRepository<Wall>, WallManager>();
+            builder.Services.AddScoped<IDataRepository<Table>, TableManager>();
             builder.Services.AddScoped<IDataRepository<Window>, WindowManager>();
+            builder.Services.AddScoped<IDataRepository<RoomObject>, RoomObjectsManager>();
 
             //CORS
             builder.Services.AddCors(options =>
@@ -60,7 +66,7 @@ namespace SAE501_Blazor_API
             {
                 
             }
-            //à remettre dans le if
+            //à remettre dans le if, en version finale, Swagger doit être désactivé
             app.UseSwagger();
             app.UseSwaggerUI();
 

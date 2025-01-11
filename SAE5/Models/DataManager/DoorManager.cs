@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SAE501_Blazor_API.Models.EntityFramework;
+using SAE501_Blazor_API.Models.EntityFramework.RoomObjects;
 using SAE501_Blazor_API.Models.Repositories;
 
 namespace SAE501_Blazor_API.Models.DataManager
@@ -35,10 +36,15 @@ namespace SAE501_Blazor_API.Models.DataManager
         public async Task UpdateAsync(Door originalDoor, Door updatedDoor)
         {
             _context.Entry(originalDoor).State = EntityState.Modified;
-            originalDoor.Length = updatedDoor.Length;
-            originalDoor.Height = updatedDoor.Height;
-            originalDoor.WallId = updatedDoor.WallId;
-            originalDoor.Wall = updatedDoor.Wall;
+            originalDoor.CustomName = updatedDoor.CustomName;
+            originalDoor.IdRoom = updatedDoor.IdRoom;
+            originalDoor.PosX = updatedDoor.PosX;
+            originalDoor.PosY = updatedDoor.PosY;
+            originalDoor.PosZ = updatedDoor.PosZ;
+            originalDoor.Orientation = updatedDoor.Orientation;
+            originalDoor.SizeX = updatedDoor.SizeX;
+            originalDoor.SizeY = updatedDoor.SizeY;
+            originalDoor.SizeZ = updatedDoor.SizeZ;
             await _context.SaveChangesAsync();
         }
 

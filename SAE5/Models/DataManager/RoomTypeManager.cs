@@ -36,7 +36,6 @@ namespace SAE501_Blazor_API.Models.DataManager
         {
             _context.Entry(originalRoomType).State = EntityState.Modified;
             originalRoomType.Name = updatedRoomType.Name;
-            originalRoomType.RoomsOfSuchRoomType = updatedRoomType.RoomsOfSuchRoomType;
             await _context.SaveChangesAsync();
         }
 

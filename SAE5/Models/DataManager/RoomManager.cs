@@ -35,13 +35,12 @@ namespace SAE501_Blazor_API.Models.DataManager
         public async Task UpdateAsync(Room originalRoom, Room updatedRoom)
         {
             _context.Entry(originalRoom).State = EntityState.Modified;
-            originalRoom.Code = updatedRoom.Code;
-            originalRoom.BuildingId = updatedRoom.BuildingId;
-            originalRoom.BuildingRoom = updatedRoom.BuildingRoom;
-            originalRoom.RoomTypeId = updatedRoom.RoomTypeId;
-            originalRoom.RoomTypeOfRoom = updatedRoom.RoomTypeOfRoom;
-            originalRoom.FurnituresOfRoom = updatedRoom.FurnituresOfRoom;
-            originalRoom.WallsOfRoom = updatedRoom.WallsOfRoom;
+            originalRoom.Name = updatedRoom.Name;
+            originalRoom.NorthOrientation = updatedRoom.NorthOrientation;
+            originalRoom.Height = updatedRoom.Height;
+            originalRoom.Base = updatedRoom.Base;
+            originalRoom.IdBuilding = updatedRoom.IdBuilding;
+            originalRoom.IdRoomType = updatedRoom.IdRoomType;
             await _context.SaveChangesAsync();
         }
 

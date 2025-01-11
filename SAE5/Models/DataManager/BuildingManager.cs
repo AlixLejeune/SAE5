@@ -36,7 +36,6 @@ namespace SAE501_Blazor_API.Models.DataManager
         {
             _context.Entry(originalBuilding).State = EntityState.Modified;
             originalBuilding.Name = updatedBuilding.Name;
-            originalBuilding.Letter = updatedBuilding.Letter;
             await _context.SaveChangesAsync();
         }
 
