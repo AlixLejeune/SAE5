@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace SAE501_Blazor_API.Models.EntityFramework.RoomObjects
 {
@@ -18,6 +19,7 @@ namespace SAE501_Blazor_API.Models.EntityFramework.RoomObjects
         [Column("rob_roomid")]
         public int IdRoom { get; set; }
 
+        [JsonIgnore]
         [ForeignKey(nameof(IdRoom))]
         [InverseProperty(nameof(Room.ObjectsOfRoom))]
         public virtual Room Room { get; set; } = null!;

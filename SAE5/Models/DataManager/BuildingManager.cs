@@ -18,7 +18,7 @@ namespace SAE501_Blazor_API.Models.DataManager
 
         public async Task<ActionResult<IEnumerable<Building>>> GetAllAsync()
         {
-            return await _context.buildings.ToListAsync();
+            return await _context.buildings.Include(b => b.Rooms).ThenInclude(r => r.RoomType).ToListAsync();
         }
 
         public async Task<ActionResult<Building>> GetByIdAsync(int id)
