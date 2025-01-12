@@ -23,7 +23,7 @@ namespace SAE501_Blazor_API.Models.DataManager
 
         public async Task<ActionResult<Room>> GetByIdAsync(int id)
         {
-            return await _context.rooms.FirstOrDefaultAsync(f => f.Id == id);
+            return await _context.rooms.Include(r => r.ObjectsOfRoom).FirstOrDefaultAsync(f => f.Id == id);
         }
 
         public async Task AddAsync(Room entity)
