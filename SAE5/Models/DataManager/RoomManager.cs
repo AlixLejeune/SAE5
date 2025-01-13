@@ -41,6 +41,10 @@ namespace SAE501_Blazor_API.Models.DataManager
             originalRoom.Base = updatedRoom.Base;
             originalRoom.IdBuilding = updatedRoom.IdBuilding;
             originalRoom.IdRoomType = updatedRoom.IdRoomType;
+
+            if(updatedRoom.ObjectsOfRoom is not null)
+                originalRoom.ObjectsOfRoom = updatedRoom.ObjectsOfRoom;
+
             await _context.SaveChangesAsync();
         }
 
