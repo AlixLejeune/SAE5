@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SAE501_Blazor_API.Models.EntityFramework;
 using SAE501_Blazor_API.Models.EntityFramework.RoomObjects;
@@ -8,13 +9,15 @@ namespace SAE501_Blazor_API.Models.DataManager
 {
     public class RoomObjectsManager : IRoomObjectRepository
     {
-        readonly DataContext _context;
+        private readonly DataContext _context;
+        private readonly IMapper _mapper;
 
         public RoomObjectsManager() { }
 
-        public RoomObjectsManager(DataContext context)
+        public RoomObjectsManager(DataContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         public async Task<ActionResult<IEnumerable<RoomObject>>> GetAllAsync()
@@ -36,8 +39,10 @@ namespace SAE501_Blazor_API.Models.DataManager
         public async Task UpdateAsync(RoomObject originalRoomObject, RoomObject updatedRoomObject)
         {
             _context.Entry(originalRoomObject).State = EntityState.Modified;
-            originalRoomObject.CustomName = updatedRoomObject.CustomName;
-            originalRoomObject.IdRoom = updatedRoomObject.IdRoom;
+
+            var typeToMap = updatedRoomObject.GetType();
+            _mapper.Map(updatedRoomObject, originalRoomObject, typeToMap, typeToMap);
+
             await _context.SaveChangesAsync();
         }
 
