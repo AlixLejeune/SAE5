@@ -27,7 +27,7 @@ namespace SAE501_Blazor_API.Controllers.Tests
         public void GetBuildingsTest()
         {
             DataContext _context = new DataContext();
-            var mockRepository = new Mock<IDataRepository<Building>>();
+            var mockRepository = new Mock<IBuildingRepository>();
             mockRepository.Setup(x => x.GetAllAsync().Result).Returns(buildingsListTests);
             BuildingController _controller = new BuildingController(mockRepository.Object);
 
@@ -40,7 +40,7 @@ namespace SAE501_Blazor_API.Controllers.Tests
         public void GetBuildingTest()
         {
             DataContext _context = new DataContext();
-            var mockRepository = new Mock<IDataRepository<Building>>();
+            var mockRepository = new Mock<IBuildingRepository>();
             mockRepository.Setup(x => x.GetByIdAsync(1).Result).Returns(testBuilding);
             BuildingController _controller = new BuildingController(mockRepository.Object);
 
@@ -53,7 +53,7 @@ namespace SAE501_Blazor_API.Controllers.Tests
         public void GetBuildingTest_NotFound()
         {
             DataContext _context = new DataContext();
-            var mockRepository = new Mock<IDataRepository<Building>>();
+            var mockRepository = new Mock<IBuildingRepository>();
             BuildingController _controller = new BuildingController(mockRepository.Object);
 
             Assert.IsInstanceOfType(_controller.GetBuilding(-1).Result.Result, typeof(NotFoundResult));
@@ -63,7 +63,7 @@ namespace SAE501_Blazor_API.Controllers.Tests
         public void PutBuildingTest()
         {
             DataContext _context = new DataContext();
-            var mockRepository = new Mock<IDataRepository<Building>>();
+            var mockRepository = new Mock<IBuildingRepository>();
             BuildingController _controller = new BuildingController(mockRepository.Object);
             mockRepository.Setup(x => x.GetByIdAsync(1).Result).Returns(testBuilding);
 
@@ -82,7 +82,7 @@ namespace SAE501_Blazor_API.Controllers.Tests
         public void PutBuildingTest_BadRequest()
         {
             DataContext _context = new DataContext();
-            var mockRepository = new Mock<IDataRepository<Building>>();
+            var mockRepository = new Mock<IBuildingRepository>();
             BuildingController _controller = new BuildingController(mockRepository.Object);
 
             var result = _controller.PutBuilding(2, testBuilding);
@@ -95,7 +95,7 @@ namespace SAE501_Blazor_API.Controllers.Tests
         public void PutBuildingTest_NotFound()
         {
             DataContext _context = new DataContext();
-            var mockRepository = new Mock<IDataRepository<Building>>();
+            var mockRepository = new Mock<IBuildingRepository>();
             BuildingController _controller = new BuildingController(mockRepository.Object);
 
             mockRepository.Setup(x => x.GetByIdAsync(1).Result).Returns(testBuilding);
@@ -115,7 +115,7 @@ namespace SAE501_Blazor_API.Controllers.Tests
         public void PostBuildingTest()
         {
             DataContext _context = new DataContext();
-            var mockRepository = new Mock<IDataRepository<Building>>();
+            var mockRepository = new Mock<IBuildingRepository>();
             BuildingController _controller = new BuildingController(mockRepository.Object);
 
             var taskResult = _controller.PostBuilding(testBuilding);
@@ -130,7 +130,7 @@ namespace SAE501_Blazor_API.Controllers.Tests
         public void PostBuildingTest_BadRequest()
         {
             DataContext _context = new DataContext();
-            var mockRepository = new Mock<IDataRepository<Building>>();
+            var mockRepository = new Mock<IBuildingRepository>();
             BuildingController _controller = new BuildingController(mockRepository.Object);
             _controller.ModelState.AddModelError("ModelError", "Building can't be empty");
 
@@ -143,7 +143,7 @@ namespace SAE501_Blazor_API.Controllers.Tests
         public void DeleteBuildingTest()
         {
             DataContext _context = new DataContext();
-            var mockRepository = new Mock<IDataRepository<Building>>();
+            var mockRepository = new Mock<IBuildingRepository>();
             BuildingController _controller = new BuildingController(mockRepository.Object);
 
             mockRepository.Setup(x => x.GetByIdAsync(1).Result).Returns(testBuilding);
@@ -158,7 +158,7 @@ namespace SAE501_Blazor_API.Controllers.Tests
         public void DeleteBuildingTest_NotFound()
         {
             DataContext _context = new DataContext();
-            var mockRepository = new Mock<IDataRepository<Building>>();
+            var mockRepository = new Mock<IBuildingRepository>();
             BuildingController _controller = new BuildingController(mockRepository.Object);
 
             mockRepository.Setup(x => x.GetByIdAsync(1).Result).Returns(testBuilding);
