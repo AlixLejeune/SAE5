@@ -10,9 +10,9 @@ namespace SAE501_Blazor_API.Controllers
     [ApiController]
     public class RoomController : ControllerBase
     {
-        private readonly IDataRepository<Room> dataRepository;
+        private readonly IRoomRepository dataRepository;
 
-        public RoomController(IDataRepository<Room> dataRepo)
+        public RoomController(IRoomRepository dataRepo)
         {
             dataRepository = dataRepo;
         }

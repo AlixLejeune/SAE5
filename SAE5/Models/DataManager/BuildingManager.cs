@@ -5,7 +5,7 @@ using SAE501_Blazor_API.Models.Repositories;
 
 namespace SAE501_Blazor_API.Models.DataManager
 {
-    public class BuildingManager : IDataRepository<Building>
+    public class BuildingManager : IBuildingRepository
     {
         readonly DataContext _context;
 

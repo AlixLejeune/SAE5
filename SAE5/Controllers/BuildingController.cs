@@ -10,9 +10,9 @@ namespace SAE501_Blazor_API.Controllers
     [ApiController]
     public class BuildingController : ControllerBase
     {
-        private readonly IDataRepository<Building> dataRepository;
+        private readonly IBuildingRepository dataRepository;
 
-        public BuildingController(IDataRepository<Building> dataRepo)
+        public BuildingController(IBuildingRepository dataRepo)
         {
             dataRepository = dataRepo;
         }
