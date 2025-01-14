@@ -9,6 +9,6 @@ namespace SAE501_Blazor_API.Models.EntityFramework.RoomObjects.ConnectedObjects
     public class ConnectedObject : RoomObject
     {
         [Column("cobj_id")]
-        public string CustomId;
+        public string CustomId { get; set; }
     }
 }
