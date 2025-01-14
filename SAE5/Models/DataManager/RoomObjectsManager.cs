@@ -6,7 +6,7 @@ using SAE501_Blazor_API.Models.Repositories;
 
 namespace SAE501_Blazor_API.Models.DataManager
 {
-    public class RoomObjectsManager : IDataRepository<RoomObject>
+    public class RoomObjectsManager : IRoomObjectRepository
     {
         readonly DataContext _context;
 

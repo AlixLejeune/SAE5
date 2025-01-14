@@ -37,14 +37,10 @@ namespace SAE501_Blazor_API
             //builder.Services.AddDbContext<DataContext>(options => options.UseNpgsql("Server=localhost;port=5432;Database=SAE_DB;uid=postgres;password=postgres;"));
 
             //DataRepositories
-            builder.Services.AddScoped<IDataRepository<Building>, BuildingManager>();
-            builder.Services.AddScoped<IDataRepository<Door>, DoorManager>();
-            builder.Services.AddScoped<IDataRepository<Heater>, HeaterManager>();
-            builder.Services.AddScoped<IDataRepository<Room>, RoomManager>();
-            builder.Services.AddScoped<IDataRepository<RoomType>, RoomTypeManager>();
-            builder.Services.AddScoped<IDataRepository<Table>, TableManager>();
-            builder.Services.AddScoped<IDataRepository<Window>, WindowManager>();
-            builder.Services.AddScoped<IDataRepository<RoomObject>, RoomObjectsManager>();
+            builder.Services.AddScoped<IBuildingRepository, BuildingManager>();
+            builder.Services.AddScoped<IRoomRepository, RoomManager>();
+            builder.Services.AddScoped<IRoomTypeRepository, RoomTypeManager>();
+            builder.Services.AddScoped<IRoomObjectRepository, RoomObjectsManager>();
 
             //CORS
             builder.Services.AddCors(options =>

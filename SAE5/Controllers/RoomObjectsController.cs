@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SAE501_Blazor_API.Models.EntityFramework;
 using SAE501_Blazor_API.Models.EntityFramework.RoomObjects;
 using SAE501_Blazor_API.Models.Repositories;
 
@@ -9,9 +8,9 @@ namespace SAE501_Blazor_API.Controllers
     [ApiController]
     public class RoomObjectsController : ControllerBase
     {
-        private readonly IDataRepository<RoomObject> dataRepository;
+        private readonly IRoomObjectRepository dataRepository;
 
-        public RoomObjectsController(IDataRepository<RoomObject> dataRepo)
+        public RoomObjectsController(IRoomObjectRepository dataRepo)
         {
             dataRepository = dataRepo;
         }
