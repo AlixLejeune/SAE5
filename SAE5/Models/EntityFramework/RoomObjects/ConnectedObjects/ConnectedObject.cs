@@ -1,7 +1,4 @@
-﻿
-
-
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SAE501_Blazor_API.Models.EntityFramework.RoomObjects.ConnectedObjects
 {
@@ -9,6 +6,6 @@ namespace SAE501_Blazor_API.Models.EntityFramework.RoomObjects.ConnectedObjects
     public abstract class ConnectedObject : RoomObject
     {
         [Column("cobj_id")]
-        public string CustomId { get; set; }
+        public string? CustomId { get; set; }
     }
 }

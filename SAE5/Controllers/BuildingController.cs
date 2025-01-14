@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SAE501_Blazor_API.Models.DTO;
 using SAE501_Blazor_API.Models.EntityFramework;
 using SAE501_Blazor_API.Models.Repositories;
 
@@ -22,6 +23,13 @@ namespace SAE501_Blazor_API.Controllers
         public async Task<ActionResult<IEnumerable<Building>>> GetBuildings()
         {
             return await dataRepository.GetAllAsync();
+        }
+
+        // GET: api/Building
+        [HttpGet("DTO")]
+        public async Task<ActionResult<IEnumerable<BuildingListElementDTO>>> GetBuildingsDTO()
+        {
+            return await dataRepository.GetAllDTOAsync();
         }
 
         // GET: api/Building/getbyid/5

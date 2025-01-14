@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using SAE501_Blazor_API.Models.DTO;
+using SAE501_Blazor_API.Models.EntityFramework;
 using SAE501_Blazor_API.Models.EntityFramework.RoomObjects;
 using SAE501_Blazor_API.Models.EntityFramework.RoomObjects.ConnectedObjects;
 using System.Reflection;
