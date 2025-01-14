@@ -11,7 +11,6 @@ namespace SAE501_Blazor_API.Models.EntityFramework.RoomObjects
         [Column("rob_id")]
         public int Id { get; set; }
 
-        [Required]
         [Column("rob_name")]
         public string? CustomName { get; set; }
 

@@ -32,7 +32,6 @@ namespace SAE501_Blazor_API.Models.EntityFramework
         [Column("fk_roo_buildingid")]
         public int IdBuilding { get; set; }
 
-        [JsonIgnore]
         [ForeignKey(nameof(IdBuilding))]
         [InverseProperty(nameof(Building.Rooms))]
         public virtual Building Building { get; set; } = null!;
