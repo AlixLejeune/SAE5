@@ -59,6 +59,7 @@ namespace SAE501_Blazor_API.Models.DataManager
                     {
                         Id = r.Id,
                         Name = r.Name,
+                        RoomTypeName = r.RoomType.Name,
                         EmptyObjects = r.ObjectsOfRoom.Select(o => new BuildingListRoomObjectDTO()
                         {
                             Id = o.Id,
