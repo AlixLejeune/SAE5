@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SAE501_Blazor_API.Models.DTO;
 using SAE501_Blazor_API.Models.EntityFramework;
 using SAE501_Blazor_API.Models.Repositories;
 
@@ -24,6 +25,13 @@ namespace SAE501_Blazor_API.Controllers
             return await dataRepository.GetAllAsync();
         }
 
+        // GET: api/RoomType/DTO
+        [HttpGet("DTO")]
+        public async Task<ActionResult<IEnumerable<RoomTypeDTO>>> GetRoomTypeDTOs()
+        {
+            return await dataRepository.GetAllDTOAsync();
+        }
+
         // GET: api/RoomType/getbyid/5
         [HttpGet]
         [Route("[action]/{id}")]
@@ -34,7 +42,7 @@ namespace SAE501_Blazor_API.Controllers
         {
             var RoomType = await dataRepository.GetByIdAsync(id);
 
-            if (RoomType == null)
+            if (RoomType.Value is null)
             {
                 return NotFound();
             }
@@ -58,13 +66,39 @@ namespace SAE501_Blazor_API.Controllers
 
             var roomTypeUpdate = await dataRepository.GetByIdAsync(id);
 
-            if (roomTypeUpdate == null)
+            if (roomTypeUpdate.Value is null)
             {
                 return NotFound();
             }
             else
             {
                 await dataRepository.UpdateAsync(roomTypeUpdate.Value, r);
+                return NoContent();
+            }
+        }
+
+        // PUT: api/RoomType/5
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPut("DTO/{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> PutDTORoomType(int id, RoomTypeDTO dto)
+        {
+            if (id != dto.Id)
+            {
+                return BadRequest();
+            }
+
+            var roomTypeUpdate = await dataRepository.GetByIdAsync(id);
+
+            if (roomTypeUpdate.Value is null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                await dataRepository.UpdateFromDTOAsync(roomTypeUpdate.Value, dto);
                 return NoContent();
             }
         }
@@ -86,6 +120,23 @@ namespace SAE501_Blazor_API.Controllers
             return CreatedAtAction("GetById", new { id = r.Id }, r);
         }
 
+        // POST: api/RoomType/DTO
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPost("DTO")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<RoomType>> PostDTORoomType(RoomTypeDTO dto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var roomType = await dataRepository.AddFromDTOAsync(dto);
+
+            return CreatedAtAction("GetById", new { id = dto.Id }, roomType);
+        }
+
         // DELETE: api/RoomType/5
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -93,7 +144,7 @@ namespace SAE501_Blazor_API.Controllers
         public async Task<IActionResult> DeleteRoomType(int id)
         {
             var roomType = await dataRepository.GetByIdAsync(id);
-            if (roomType == null)
+            if (roomType.Value is null)
             {
                 return NotFound();
             }

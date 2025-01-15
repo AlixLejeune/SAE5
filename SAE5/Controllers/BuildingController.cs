@@ -42,7 +42,7 @@ namespace SAE501_Blazor_API.Controllers
         {
             var building = await dataRepository.GetByIdAsync(id);
 
-            if (building == null)
+            if (building.Value is null)
             {
                 return NotFound();
             }
@@ -66,7 +66,7 @@ namespace SAE501_Blazor_API.Controllers
 
             var bUpdate = await dataRepository.GetByIdAsync(id);
 
-            if (bUpdate == null)
+            if (bUpdate.Value is null)
             {
                 return NotFound();
             }
@@ -101,7 +101,7 @@ namespace SAE501_Blazor_API.Controllers
         public async Task<IActionResult> DeleteBuilding(int id)
         {
             var building = await dataRepository.GetByIdAsync(id);
-            if (building == null)
+            if (building.Value is null)
             {
                 return NotFound();
             }
