@@ -161,11 +161,10 @@ namespace SAE501_Blazor_API.Controllers.Tests
             var mockRepository = new Mock<IBuildingRepository>();
             BuildingController _controller = new BuildingController(mockRepository.Object);
 
-            mockRepository.Setup(x => x.GetByIdAsync(1).Result).Returns(testBuilding);
-
-            var result = _controller.DeleteBuilding(2);
+            var result = _controller.DeleteBuilding(-1);
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType<NotFoundResult>(result.Result);
+
         }
     }
 }

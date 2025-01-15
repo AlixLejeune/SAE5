@@ -17,7 +17,7 @@ namespace SAE501_Blazor_API.Controllers
 
         // GET: api/RoomObjects
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<RoomObject>>> GetRoomObjectss()
+        public async Task<ActionResult<IEnumerable<RoomObject>>> GetRoomObjects()
         {
             return await dataRepository.GetAllAsync();
         }
@@ -28,11 +28,11 @@ namespace SAE501_Blazor_API.Controllers
         [ActionName("GetById")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<RoomObject>> GetRoomObjects(int id)
+        public async Task<ActionResult<RoomObject>> GetRoomObject(int id)
         {
             var roomObjects = await dataRepository.GetByIdAsync(id);
 
-            if (roomObjects.Value is null)
+            if (roomObjects?.Value is null)
             {
                 return NotFound();
             }
@@ -56,7 +56,7 @@ namespace SAE501_Blazor_API.Controllers
 
             var bUpdate = await dataRepository.GetByIdAsync(id);
 
-            if (bUpdate.Value is null)
+            if (bUpdate?.Value is null)
             {
                 return NotFound();
             }
@@ -91,7 +91,7 @@ namespace SAE501_Blazor_API.Controllers
         public async Task<IActionResult> DeleteRoomObjects(int id)
         {
             var roomObjects = await dataRepository.GetByIdAsync(id);
-            if (roomObjects.Value is null)
+            if (roomObjects?.Value is null)
             {
                 return NotFound();
             }

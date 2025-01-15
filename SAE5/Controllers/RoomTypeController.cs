@@ -42,7 +42,7 @@ namespace SAE501_Blazor_API.Controllers
         {
             var RoomType = await dataRepository.GetByIdAsync(id);
 
-            if (RoomType.Value is null)
+            if (RoomType?.Value is null)
             {
                 return NotFound();
             }
@@ -66,7 +66,7 @@ namespace SAE501_Blazor_API.Controllers
 
             var roomTypeUpdate = await dataRepository.GetByIdAsync(id);
 
-            if (roomTypeUpdate.Value is null)
+            if (roomTypeUpdate?.Value is null)
             {
                 return NotFound();
             }
@@ -92,7 +92,7 @@ namespace SAE501_Blazor_API.Controllers
 
             var roomTypeUpdate = await dataRepository.GetByIdAsync(id);
 
-            if (roomTypeUpdate.Value is null)
+            if (roomTypeUpdate?.Value is null)
             {
                 return NotFound();
             }
@@ -144,7 +144,7 @@ namespace SAE501_Blazor_API.Controllers
         public async Task<IActionResult> DeleteRoomType(int id)
         {
             var roomType = await dataRepository.GetByIdAsync(id);
-            if (roomType.Value is null)
+            if (roomType?.Value is null)
             {
                 return NotFound();
             }
