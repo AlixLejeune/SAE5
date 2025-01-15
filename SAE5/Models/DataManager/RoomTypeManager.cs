@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SAE501_Blazor_API.Models.DTO;
 using SAE501_Blazor_API.Models.EntityFramework;
 using SAE501_Blazor_API.Models.Repositories;
 
@@ -42,6 +43,42 @@ namespace SAE501_Blazor_API.Models.DataManager
         public async Task DeleteAsync(RoomType roomTypeToDelete)
         {
             _context.roomTypes.Remove(roomTypeToDelete);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<ActionResult<IEnumerable<RoomTypeDTO>>> GetAllDTOAsync()
+        {
+            return await _context.roomTypes.Include(t => t.Rooms)
+                .ThenInclude(r => r.Building)
+                .Select(t => new RoomTypeDTO()
+                {
+                    Id = t.Id,
+                    Name = t.Name,
+                    Rooms = t.Rooms.Select(r => new RoomTypeDTO.RoomDTO()
+                    {
+                        Id = r.Id,
+                        Name = r.Name,
+                        BuildingName = r.Building.Name
+                    }).ToList()
+                })
+                .ToListAsync();
+        }
+
+        public async Task<RoomType> AddFromDTOAsync(RoomTypeDTO roomDto)
+        {
+            var roomType = new RoomType()
+            {
+                Id = roomDto.Id,
+                Name = roomDto.Name
+            };
+            await AddAsync(roomType);
+            return roomType;
+        }
+
+        public async Task UpdateFromDTOAsync(RoomType roomTypeToUpdate, RoomTypeDTO roomDto)
+        {
+            _context.Entry(roomTypeToUpdate).State = EntityState.Modified;
+            roomTypeToUpdate.Name = roomDto.Name;
             await _context.SaveChangesAsync();
         }
     }

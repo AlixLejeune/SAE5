@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SAE501_Blazor_API.Models.DTO;
 using SAE501_Blazor_API.Models.EntityFramework;
 using SAE501_Blazor_API.Models.Repositories;
 
@@ -24,6 +25,13 @@ namespace SAE501_Blazor_API.Controllers
             return await dataRepository.GetAllAsync();
         }
 
+        // GET: api/Building
+        [HttpGet("DTO")]
+        public async Task<ActionResult<IEnumerable<BuildingListElementDTO>>> GetBuildingsDTO()
+        {
+            return await dataRepository.GetAllDTOAsync();
+        }
+
         // GET: api/Building/getbyid/5
         [HttpGet]
         [Route("[action]/{id}")]
@@ -34,7 +42,7 @@ namespace SAE501_Blazor_API.Controllers
         {
             var building = await dataRepository.GetByIdAsync(id);
 
-            if (building == null)
+            if (building.Value is null)
             {
                 return NotFound();
             }
@@ -58,7 +66,7 @@ namespace SAE501_Blazor_API.Controllers
 
             var bUpdate = await dataRepository.GetByIdAsync(id);
 
-            if (bUpdate == null)
+            if (bUpdate.Value is null)
             {
                 return NotFound();
             }
@@ -93,7 +101,7 @@ namespace SAE501_Blazor_API.Controllers
         public async Task<IActionResult> DeleteBuilding(int id)
         {
             var building = await dataRepository.GetByIdAsync(id);
-            if (building == null)
+            if (building.Value is null)
             {
                 return NotFound();
             }

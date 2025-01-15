@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SAE501_Blazor_API.Models.DTO;
 using SAE501_Blazor_API.Models.EntityFramework;
 using SAE501_Blazor_API.Models.Repositories;
 
@@ -18,7 +19,7 @@ namespace SAE501_Blazor_API.Models.DataManager
 
         public async Task<ActionResult<IEnumerable<Building>>> GetAllAsync()
         {
-            return await _context.buildings.Include(b => b.Rooms).ThenInclude(r => r.RoomType).ToListAsync();
+            return await _context.buildings.ToListAsync();
         }
 
         public async Task<ActionResult<Building>> GetByIdAsync(int id)
@@ -43,6 +44,31 @@ namespace SAE501_Blazor_API.Models.DataManager
         {
             _context.buildings.Remove(buildingToDelete);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<ActionResult<IEnumerable<BuildingListElementDTO>>> GetAllDTOAsync()
+        {
+            return await _context.buildings
+                .Include(b => b.Rooms).ThenInclude(r => r.RoomType)
+                .Include(b => b.Rooms).ThenInclude(r => r.ObjectsOfRoom)
+                .Select(b => new BuildingListElementDTO()
+                {
+                    Id = b.Id,
+                    Name = b.Name,
+                    Rooms = b.Rooms.Select(r => new BuildingListRoomDTO()
+                    {
+                        Id = r.Id,
+                        Name = r.Name,
+                        RoomTypeName = r.RoomType.Name,
+                        EmptyObjects = r.ObjectsOfRoom.Select(o => new BuildingListRoomObjectDTO()
+                        {
+                            Id = o.Id,
+                            CustomName = o.CustomName,
+                            RoomObjectType = o.GetType().Name
+                        }).ToList()
+                    }).ToList()
+                })
+                .ToListAsync();
         }
     }
 }
