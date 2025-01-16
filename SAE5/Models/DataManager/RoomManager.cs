@@ -29,11 +29,6 @@ namespace SAE501_Blazor_API.Models.DataManager
 
         public async Task AddAsync(Room entity)
         {
-            if(entity.Base.Count < 3)
-            {
-                throw new ArgumentException("Less than 3 vectors in room base, unable to create a valide 2D shape.");
-            }
-
             await _context.rooms.AddAsync(entity);
             await _context.SaveChangesAsync();
         }
@@ -44,10 +39,6 @@ namespace SAE501_Blazor_API.Models.DataManager
             originalRoom.Name = updatedRoom.Name;
             originalRoom.NorthOrientation = updatedRoom.NorthOrientation;
             originalRoom.Height = updatedRoom.Height;
-
-            if (updatedRoom.Base.Count < 3)
-                throw new ArgumentException("Less than 3 vectors in room base, unable to create a valide 2D shape.");
-
             originalRoom.Base = updatedRoom.Base;
             originalRoom.IdBuilding = updatedRoom.IdBuilding;
             originalRoom.IdRoomType = updatedRoom.IdRoomType;

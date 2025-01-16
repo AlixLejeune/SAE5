@@ -25,6 +25,7 @@ namespace SAE501_Blazor_API.Models.EntityFramework
         public double Height { get; set; }
 
         [Required]
+        [MinLength(3)]
         [Column("roo_base")]
         public List<Vector2D> Base { get; set; } = new List<Vector2D>();
 
