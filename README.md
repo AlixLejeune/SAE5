@@ -33,16 +33,32 @@ To use the API, ensure you have:
    dotnet restore
    ```
 
-3. Configure your database connection in `appsettings.json`:
-   ```json
-   {
-     "ConnectionStrings": {
-        "SAE_DB_Local": "Server=localhost;port=5432;Database=SAE_DB;uid=postgres;password=postgres;",
-        "DefaultConnection": "YourConnectionStringHere"
-     }
-   }
+3. Configure your database connection in `Program.cs`:
+   ```cs
+   //DataContext
+    builder.Services.AddDbContext<DataContext>(options =>
+    options.UseNpgsql($"Server={builder.Configuration["Server"]};port={builder.Configuration["Port"]};Database={builder.Configuration["Db"]};uid={builder.Configuration["uid"]};password={builder.Configuration["Password"]};"));
+
+    //Local DataContext
+    //builder.Services.AddDbContext<DataContext>(options => options.UseNpgsql("Server=localhost;port=5432;Database=SAE_DB;uid=postgres;password=postgres;"));
    ```
-   You'll also need to change the builder injection in `Program.cs`, since the version we're using in the main branch is configured to run with Azure variables. Just put the *builder.Services.AddDbContext* lines under **DataContext** in comment, and uncomment the one under **Local DataContext**.
+   The **DataContext** configuration is used with Azure deployment and environment variables, while the **Local DataContext** is a a basic local PostgreSQL database. <br>
+   If no DbContext is set up through injection, it will run the default connection string from the `DataContext.cs`:
+   ```cs 
+   if (!optionsBuilder.IsConfigured)
+    {
+        optionsBuilder.UseNpgsql("SAE_DB_Local");
+    }
+    ```
+    The string itself is stored into `appsettings.json`: 
+    ```json
+      "ConnectionStrings": 
+      {
+        "SAE_DB_Local": "Server=localhost;port=5432;Database=SAE_DB;uid=postgres;password=postgres;"
+      }
+    ```
+  
+
 
 4. Run migrations to set up the database schema:
    ```bash

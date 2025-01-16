@@ -26,7 +26,7 @@ namespace SAE501_Blazor_API.Models.EntityFramework.RoomObjects
         [Column("cus_sizez")]
         public double SizeZ { get; set; }
 
-        [Range(0, 16581375)]
+        [Range(0, 0xFFFFFF)]
         [Column("cus_color")]
         public int Color { get; set; }
     }
