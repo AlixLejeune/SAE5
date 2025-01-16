@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SAE501_Blazor_API.Models.DTO;
 using SAE501_Blazor_API.Models.EntityFramework;
 using SAE501_Blazor_API.Models.EntityFramework.RoomObjects;
 using SAE501_Blazor_API.Models.Repositories;
@@ -50,6 +51,21 @@ namespace SAE501_Blazor_API.Models.DataManager
         {
             _context.roomObjects.Remove(roomObjectToDelete);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<ActionResult<IEnumerable<RoomObjectRoomDTO>>> GetAllRoomsDTOAsync()
+        {
+            return await _context.rooms
+                .Include(r => r.Building)
+                .Include(r => r.ObjectsOfRoom)
+                .Select(r => new RoomObjectRoomDTO()
+                    {
+                        Id = r.Id,
+                        Name = r.Name,
+                        BuildingName = r.Building.Name,
+                        RoomObjects = r.ObjectsOfRoom
+                    })
+                .ToListAsync();
         }
     }
 }
