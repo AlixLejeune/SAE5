@@ -63,11 +63,9 @@ namespace SAE501_Blazor_API
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
-                
+                app.UseSwagger();
+                app.UseSwaggerUI();
             }
-            //à remettre dans le if, en version finale, Swagger doit être désactivé
-            app.UseSwagger();
-            app.UseSwaggerUI();
 
             app.UseHttpsRedirection();
 

@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace SAE501_Blazor_API.Models.EntityFramework.RoomObjects
 {
-    [Table("t_e_roomboject_rob")]
+    [Table("t_e_roomobject_rob")]
     public abstract class RoomObject
     {
         [Key]
