@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SAE501_Blazor_API.Models.DTO;
 using SAE501_Blazor_API.Models.EntityFramework.RoomObjects;
 using SAE501_Blazor_API.Models.Repositories;
 
@@ -20,6 +21,13 @@ namespace SAE501_Blazor_API.Controllers
         public async Task<ActionResult<IEnumerable<RoomObject>>> GetRoomObjects()
         {
             return await dataRepository.GetAllAsync();
+        }
+
+        // GET: api/RoomObjects/DTO
+        [HttpGet("DTO")]
+        public async Task<ActionResult<IEnumerable<RoomObjectRoomDTO>>> GetRoomObjectsDTO()
+        {
+            return await dataRepository.GetAllRoomsDTOAsync();
         }
 
         // GET: api/RoomObjects/getbyid/5
