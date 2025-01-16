@@ -37,10 +37,12 @@ To use the API, ensure you have:
    ```json
    {
      "ConnectionStrings": {
-       "DefaultConnection": "YourConnectionStringHere"
+        "SAE_DB_Local": "Server=localhost;port=5432;Database=SAE_DB;uid=postgres;password=postgres;",
+        "DefaultConnection": "YourConnectionStringHere"
      }
    }
    ```
+   You'll also need to change the builder injection in `Program.cs`, since the version we're using in the main branch is configured to run with Azure variables. Just put the *builder.Services.AddDbContext* lines under **DataContext** in comment, and uncomment the one under **Local DataContext**.
 
 4. Run migrations to set up the database schema:
    ```bash

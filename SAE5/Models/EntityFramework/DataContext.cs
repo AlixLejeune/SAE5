@@ -24,6 +24,7 @@ namespace SAE501_Blazor_API.Models.EntityFramework
         public virtual DbSet<Plug> plugs { get; set; } = null!;
         public virtual DbSet<RoomObject> roomObjects { get; set; } = null!; //to get the table of all room objects ?
         public virtual DbSet<ConnectedObject> connectedObjects { get; set; } = null!; //same as previous for connected objects ?
+        public virtual DbSet<CustomObject> customObjects { get; set; } = null!;
         public virtual DbSet<Sensor6in1> sensors6In1 { get; set; } = null!;
         public virtual DbSet<Sensor9in1> sensors9In1 { get; set; } = null!;
         public virtual DbSet<SensorCO2> sensorsCO2 { get; set; } = null!;
@@ -43,20 +44,7 @@ namespace SAE501_Blazor_API.Models.EntityFramework
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Building>();
             modelBuilder.Entity<Room>().OwnsMany(e => e.Base, d => d.ToJson());
-            modelBuilder.Entity<RoomType>();
-            modelBuilder.Entity<Door>();
-            modelBuilder.Entity<Heater>();
-            modelBuilder.Entity<Lamp>();
-            modelBuilder.Entity<Plug>();
-            modelBuilder.Entity<RoomObject>();
-            modelBuilder.Entity<Sensor6in1>();
-            modelBuilder.Entity<Sensor9in1>();
-            modelBuilder.Entity<SensorCO2>();
-            modelBuilder.Entity<Siren>();
-            modelBuilder.Entity<Table>();
-            modelBuilder.Entity<Window>();
         }
     }
 }
