@@ -15,13 +15,16 @@ namespace SAE501_Blazor_API.Models.EntityFramework
 
         [Required]
         [Column("roo_name")]
+        [StringLength(50)]
         public string Name { get; set; }
 
         [Column("roo_northorientation")]
+        [Range(0, 360)]
         public double NorthOrientation { get; set; }
 
         [Required]
         [Column("roo_height")]
+        [Range(0, double.MaxValue, MinimumIsExclusive = true)]
         public double Height { get; set; }
 
         [Required]

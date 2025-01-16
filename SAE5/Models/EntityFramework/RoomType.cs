@@ -12,6 +12,7 @@ namespace SAE501_Blazor_API.Models.EntityFramework
 
         [Required]
         [Column("rty_name")]
+        [StringLength(30)]
         public string Name { get; set; }
 
         [InverseProperty(nameof(Room.RoomType))]
