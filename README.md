@@ -1,6 +1,6 @@
 # HomePulse API
 
-HomePulse API presentation ! This API allows you to manage buildings, rooms within those buildings with their types, all the furnitures you might place in those rooms, and sensors installed in each room. It's designed to support a variety of sensors for environmental monitoring. This APi is design to work with a specific Blazor Client, but its repository is not public yet.
+HomePulse API presentation ! This API allows you to manage buildings, rooms within those buildings with their types, all the furnitures you might place in those rooms, and sensors installed in each room. It's designed to support a variety of sensors for environmental monitoring. This API is designed to be hosted on Azure, and work with a specific Blazor Client, but its repository is not public yet.
 
 ## Features
 
@@ -205,7 +205,7 @@ IdBuilding and IdRoomType are the foreign keys of the building the room is in, a
 ### RoomObjects
 
 This class is an abstract class describing all the furnitures and sensors. You can't push a pure RoomObject into the database, as it will generate an error. Instead, the name of the concrete class is told in the Json (case sensitive).<br>
-Current classes currently mapped: 
+Classes currently mapped: 
 - Door
 - Heater
 - Table 
@@ -216,6 +216,7 @@ Current classes currently mapped:
 - Sensor9in1
 - SensorCO2
 - Siren
+- CustomObject
 
 Each of these classes implements diffrent interfaces depending on how they're allowed to be manipulated by the client (IPosition, IRotation, IOrientation, ISize), differenciating their properties.
 
@@ -266,6 +267,7 @@ The API uses standard HTTP status codes to indicate success or failure:
 - `200 OK`: Successful operation.
 - `201 Created`: Resource successfully created.
 - `400 Bad Request`: Invalid input provided.
+- '401 Unauthorized': You don't have the authorization to access the ressource
 - `404 Not Found`: Resource not found.
 - `500 Internal Server Error`: Unexpected error on the server.
 
