@@ -4,6 +4,7 @@ using SAE501_Blazor_API.Models.DataManager;
 using SAE501_Blazor_API.Models.EntityFramework;
 using SAE501_Blazor_API.Models.EntityFramework.RoomObjects;
 using SAE501_Blazor_API.Models.Repositories;
+using SAE501_Blazor_API.Security;
 using SAE501_Blazor_API.Utils;
 using System.Reflection;
 using System.Text.Json.Serialization;
@@ -18,7 +19,7 @@ namespace SAE501_Blazor_API
 
             // Add services to the container
             builder.Configuration.AddEnvironmentVariables("AZURE_");
-            // AZURE_JWTSECRET__SECRETKEY => builder.Configuration["JwtSecret:SecretKey"]
+            // AZURE_APIKEY => builder.Configuration["ApiKey"]
 
             builder.Services.AddControllers(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true)
                 .AddJsonOptions(options =>
@@ -55,6 +56,7 @@ namespace SAE501_Blazor_API
             });
 
             var app = builder.Build();
+            app.UseMiddleware<SecurityMiddleware>();
 
             //Cors policy
             app.UseRouting();
